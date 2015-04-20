@@ -10,6 +10,7 @@ gulp.task 'scripts', ->
     .pipe browserify
       transform: ['coffee-reactify']
       extensions: ['.cjsx']
+      debug: !gulp.env.production
     .pipe rename 'app.js'
     .pipe gulp.dest 'dist'
 
@@ -27,7 +28,7 @@ gulp.task 'webserver', ->
         open: false
         fallback: 'index.html'
 
-gulp.task 'default', ['scripts', 'html'], ->
+gulp.task 'default', ['scripts', 'html']
 
 gulp.task 'watch', ['default', 'webserver'], ->
   gulp.watch ['./src/**/*.cjsx'], ['scripts']
