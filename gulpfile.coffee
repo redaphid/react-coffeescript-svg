@@ -1,12 +1,14 @@
 gulp       = require 'gulp'
 browserify = require 'gulp-browserify'
 webserver  = require 'gulp-webserver'
+plumber = require 'gulp-plumber'
 rename = require 'gulp-rename'
-handleErrors = (error) =>
+handleErrors = (error) ->
   console.error 'Error:', error.message
 
 gulp.task 'scripts', ->
-  gulp.src 'src/app.coffee', read: false
+  gulp.src 'src/app.cjsx', read: false
+    .pipe plumber()
     .pipe browserify
       transform: ['coffee-reactify']
       extensions: ['.cjsx']
@@ -31,5 +33,5 @@ gulp.task 'webserver', ->
 gulp.task 'default', ['scripts', 'html']
 
 gulp.task 'watch', ['default', 'webserver'], ->
-  gulp.watch ['./src/**/*.cjsx'], ['scripts']
+  gulp.watch ['./src/**/*.cjsx', 'package.json'], ['scripts']
   gulp.watch ['index.html'], ['html']
