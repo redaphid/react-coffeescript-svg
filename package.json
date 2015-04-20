@@ -19,6 +19,7 @@
   "homepage": "https://github.com/redaphid/react-coffeescript-svg",
   "dependencies": {
     "flux": "^2.0.1",
+    "lodash": "^3.7.0",
     "react": "^0.13.2"
   },
   "devDependencies": {
