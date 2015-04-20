@@ -32,3 +32,4 @@ gulp.task 'default', ['scripts', 'html']
 
 gulp.task 'watch', ['default', 'webserver'], ->
   gulp.watch ['./src/**/*.cjsx'], ['scripts']
+  gulp.watch ['index.html'], ['html']
